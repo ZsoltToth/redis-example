@@ -9,24 +9,6 @@ const log = winston.createLogger({
   transports: new winston.transports.Console()
 });
 const config = require('./config');
-const mongoose = require('mongoose');
-
-const { host, port, name, user, password } = config.db;
-const dbConnectionString = `mongodb://${host}:${port}/${name}`;
-
-mongoose.connect(dbConnectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  auth: {
-    authSource: 'admin'
-  },
-  user: user,
-  pass: password
-}).catch(reason => {
-  log.error({ reason: reason, connectionString: dbConnectionString });
-  process.exit(1);
-});
 
 const app = express();
 
