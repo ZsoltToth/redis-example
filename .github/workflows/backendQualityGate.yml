@@ -21,4 +21,4 @@ jobs:
     - name: Install
       run: npm install --prefix ./backend
     - name: Quality Gate
-      run: npm run test:quality --prefix ./backend
+      run: npm run test:quality 
