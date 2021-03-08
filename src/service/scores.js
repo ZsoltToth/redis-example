@@ -1,30 +1,13 @@
-const redis = require('redis');
-
-const redisClient = redis.createClient();
-redisClient.on('error', function (error) {
-  console.error(error);
-});
+const dao = require('../dao/scores');
 
 const _readScores = (callback) => {
-  redisClient.set('key', 'value', redis.print);
-  redisClient.get('key', redis.print);
-
-  redisClient.keys('*', (err, reply) => {
-    if (err !== null) {
-      console.error(err);
-    }
-    callback(reply);
-  });
+  dao.readScores().then((keys) => callback(keys));
 };
 
 const _readScoresById = (id, callback) => {
-  redisClient.get(id, (err, reply) => {
-    if (err !== null) {
-      console.error(err);
-    }
-    callback(reply);
-  });
+  dao.readScoresById(id, callback);
 };
+
 module.exports = {
   readScores: _readScores,
   readScoresById: _readScoresById
