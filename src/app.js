@@ -26,7 +26,7 @@ if (config.env === 'prod') {
         title: 'MERN Template Express API with Swagger',
         version: '0.1.0',
         description:
-            'Lorem ipsum ...',
+          'Lorem ipsum ...',
         license: {
           name: 'MIT',
           url: 'https://spdx.org/licenses/MIT.html'
@@ -49,14 +49,16 @@ if (config.env === 'prod') {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, { explorer: true }));
 }
 
-const issuesRouter = require('./routes/issues');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const issuesRouter = require('./routes/issues');
 app.use('/issues', issuesRouter);
+
+const scoresRouter = require('./routes/scores');
+app.use('/score', scoresRouter);
 
 module.exports = app;
