@@ -12,7 +12,13 @@ const _listById = (req, res) => {
   });
 };
 
+const _recordScore = (req, res) => {
+  service.recordScore(req.body.key, req.body.value)
+    .then(res.status(200).send());
+};
+
 module.exports = {
   listScores: _listScores,
-  listById: _listById
+  listById: _listById,
+  recordScore: _recordScore
 };

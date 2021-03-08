@@ -29,4 +29,27 @@ router.get('/', contoller.listScores);
  */
 router.get('/:id', contoller.listById);
 
+/**
+ * @swagger
+ * /score/:
+ *    post:
+ *      summary: record a new score
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                key:
+ *                  type: string,
+ *                  required: true
+ *                value:
+ *                  type: integer
+ *                  required: true
+ *      responses:
+ *        200:
+ *          description: list of scores
+ */
+router.post('/', contoller.recordScore);
+
 module.exports = router;
